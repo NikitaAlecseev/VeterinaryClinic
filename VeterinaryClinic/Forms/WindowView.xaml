@@ -1,0 +1,81 @@
+﻿<Window x:Class="VeterinaryClinic.Forms.WindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:VeterinaryClinic.Forms"
+        mc:Ignorable="d"
+        Title="Просмотр записи" Height="650" Width="700" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Border Background="#eff2f7" CornerRadius="10"  MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Background="#AF4452" CornerRadius="10 10 0 0" Grid.ColumnSpan="2">
+                <TextBlock Text="Просмотр записи" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Foreground="White"/>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Ellipse Height="150" Width="150">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imageBrush" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                
+                <TextBlock Grid.Column="1" TextAlignment="Left" VerticalAlignment="Top" Margin="0 30 0 0" Foreground="Black" FontSize="25">
+                     <Run x:Name="lName" Text="Мухтар" FontWeight="Bold"/>
+                </TextBlock>
+            </Grid>
+
+            <TextBlock Grid.Row="2" Margin="20 10 0 0" Foreground="Black" FontSize="20">
+                 <Run Text="Кличка питомца" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lNickname" Text="Мухтар"/>
+                 <LineBreak/>
+                 <Run Text="Порода питомца" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lBreed" Text="Хаски"/>
+                 <LineBreak/>
+                 <Run Text="ФИО Хозяина" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lFullName" Text="Петров Петр Петрович"/>
+                 <LineBreak/>
+                 <Run Text="ФИО Ветеринара" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lFullNameVeterinar" Text="Петров Петр Петрович"/>
+                 <LineBreak/>
+                 <Run Text="Номер телефона" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lPhone" Text="89774646566"/>
+                 <LineBreak/>
+                 <Run Text="Дата приема" FontWeight="Bold"/>
+                 <LineBreak/>
+                 <Run x:Name="lDateReception" Text="20.04.2024 11:00"/>
+                 <LineBreak/>
+            </TextBlock>
+
+
+            <TextBox x:Name="tbClaim" Height="440" Margin="30 30 30 0" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignOutlinedTextBox}"  materialDesign:HintAssist.Hint="Жалоба"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+            
+            <Button Grid.ColumnSpan="2" Grid.Row="3" Margin="50 0 50 0" Click="btnClose_Click">
+                <TextBlock Text="Закрыть" FontSize="18" Foreground="White"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="VeterinaryClinic.Pages.PageHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VeterinaryClinic.Pages"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800">
+
+    <Border CornerRadius="0" Background="#eff2f7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="История приемов" FontSize="25" FontWeight="Bold"/>
+                <TextBox x:Name="tbSearch" Margin="10 0 10 0" HorizontalAlignment="Stretch" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Поиск" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" Grid.Row="1" TextChanged="tbSearch_TextChanged"/>
+
+                <ComboBox x:Name="cbSorting" Margin="10 0 10 0" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Сортировка" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Style="{StaticResource MaterialDesignOutlinedComboBox}" SelectionChanged="cbSorting_SelectionChanged">
+                    <ComboBoxItem Content="Без сортировки"/>
+                    <ComboBoxItem Content="ФИО по алфавиту (a-z)"/>
+                    <ComboBoxItem Content="ФИО по алфавиту (z-a)"/>
+                    <ComboBoxItem Content="Дата записи по алфавиту (a-z)"/>
+                    <ComboBoxItem Content="Дата записи по алфавиту (z-a)"/>
+                </ComboBox>
+            </Grid>
+
+            <ListView x:Name="listRecord" Grid.Row="1" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="150"  CornerRadius="10" Background="#FC8090">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Ellipse Width="100" Height="100" Grid.RowSpan="5" Margin="10">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding AnimalClient.GetFullPathPhoto}" Stretch="UniformToFill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+
+                                <TextBlock Text="{Binding FullName}" FontSize="20" FontWeight="Bold" Grid.Column="1" Margin="20 0 0 0" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding AnimalClient.Nickname, StringFormat={}Кличка питомца: {0}}" FontSize="18" FontWeight="Bold" Foreground="#A31313" Grid.Column="1" Grid.Row="1" Margin="20 0 0 0" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding AnimalClient.Breed, StringFormat={}Порода: {0}}" FontSize="18" FontWeight="Bold" Foreground="#A31313" Grid.Column="1" Grid.Row="2" Margin="20 0 0 0" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding FullDateReception, StringFormat={}Дата приема: {0}}" FontSize="18" FontWeight="Bold" Foreground="#A31313" Grid.Column="1" Grid.Row="3" Margin="20 0 0 0" VerticalAlignment="Top"/>
+
+                                <Border Grid.Column="2" Grid.RowSpan="5" Margin="10" CornerRadius="20" Background="#AF4452">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Жалоба" TextAlignment="Center" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Claim}" Grid.Row="1" TextAlignment="Left" Margin="10 0 10 10" TextWrapping="Wrap" Foreground="White" FontSize="16"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Открыть карту" Click="menuItem_Click_Open"></MenuItem>
+                        <MenuItem Header="Питомцы клиента" Click="menuItem_Click_Animals"/>
+                        <MenuItem Header="Удалить" Click="menuItem_Click_Delete"></MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListView>
+        </Grid>
+    </Border>
+</UserControl>

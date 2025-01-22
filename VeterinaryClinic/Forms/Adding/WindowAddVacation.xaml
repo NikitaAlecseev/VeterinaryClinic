@@ -1,0 +1,42 @@
+﻿<Window x:Class="VeterinaryClinic.Forms.WindowAddVacation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:VeterinaryClinic.Forms"
+        mc:Ignorable="d"
+        Title="Добавление сотрудника" Height="320" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+
+    <Border Background="#eff2f7" CornerRadius="10"  MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#AF4452" CornerRadius="10 10 0 0" Grid.ColumnSpan="2">
+                <TextBlock Text="Назначить отпуск сотруднику" TextAlignment="Center" VerticalAlignment="Center" FontSize="21" FontWeight="Bold" Foreground="White"/>
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="0" Margin="0 20 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <DatePicker x:Name="dateStart" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="30 0 30 0" materialDesign:HintAssist.Hint="Дата начала отпуска" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                <DatePicker x:Name="dateEnd" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="30 0 30 0" materialDesign:HintAssist.Hint="Дата окончания отпуска" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            </Grid>
+
+            <Button  Grid.Row="2" Margin="50 0 50 0" Click="btnVacation_Click">
+                <TextBlock Text="Готово" Foreground="White"/>
+            </Button>
+            <Button  Grid.Row="3" Margin="50 0 50 0" VerticalAlignment="Top" Click="btnClose_Click">
+                <TextBlock Text="Отмена" Foreground="White"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
